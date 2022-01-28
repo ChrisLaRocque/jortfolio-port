@@ -8,6 +8,7 @@ const Project = props =>{
     return(
         <div>
             <h1>{title}</h1>
+            {/* <small>{`${body.childMarkdownRemark.timeToRead} minutes`}</small> */}
             <div dangerouslySetInnerHTML={{__html: body.childMarkdownRemark.html}} />
         </div>
     )
@@ -19,6 +20,7 @@ export const query = graphql`
             body {
                 childMarkdownRemark {
                     html
+                    timeToRead
                 }
             }
         }
