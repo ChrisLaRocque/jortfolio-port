@@ -22,7 +22,7 @@ function IndexPage(props) {
         headline="Projects"
         subHeadline="The 3 most recent projects of mine."
         cards={projectCards}
-        more={{ to: '/projects', text: 'All projects', is: 'info' }}
+        more={{ to: '/projects', text: 'All projects'}}
         prepend="/projects/"
         ctaText="Building"
       />
@@ -30,7 +30,7 @@ function IndexPage(props) {
         headline="Tech"
         subHeadline="The tech I use and where I've used it"
         cards={techCards}
-        more={{ to: '/tech', text: 'All tech', is: 'link' }}
+        more={{ to: '/tech', text: 'All tech' }}
         prepend="/tech/"
         icons
         ctaText="What I've built with"

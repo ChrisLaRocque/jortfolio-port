@@ -54,7 +54,7 @@ function Cards(props) {
         </div>
         {more && (
         <Link to={more.to} className="buttons is-right">
-          <button className={`button is-${more.is || 'info'}`} type="button">
+          <button className={`button is-${more.is || 'black'}`} type="button">
             { more.text || 'See all' }
           </button>
         </Link>

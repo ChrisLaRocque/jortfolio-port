@@ -36,7 +36,13 @@ section {
     transform: scale(1.2);
   }
 }
-
+.hero {
+  &.is- {
+    &primary {
+      color: #363636 !important;
+    }
+  }
+}
 // Cards
 .card-header {
   background: black;
