@@ -13,7 +13,6 @@ import Navigation from "./Navigation"
 import Footer from "./Footer"
 
 const Layout = props => {
-  console.log('Layout props', props)
   const { children, seoInfo } = props
 
   return (
