@@ -39,10 +39,10 @@ function SEO({
           name: 'twitter:card',
           content: 'summary',
         },
-        {
-          name: 'twitter:creator',
-          content: site.siteMetadata?.author || '',
-        },
+        // {
+        //   name: 'twitter:creator',
+        //   content: site.siteMetadata?.author || '',
+        // },
         {
           name: 'twitter:title',
           content: title,

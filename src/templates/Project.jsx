@@ -2,33 +2,42 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 import Layout from '../components/Layout';
 import Icon from '../components/Icon';
+import Warning from '../components/Warning';
 
 function Project(props) {
   const { data } = props;
   const { contentfulChrisProjectPage } = data;
   const {
-    title, description, body, site, tech, githubLink, relatedProjects,
+    title, description, body, site, tech, githubLink, relatedProjects, inProgress,
   } = contentfulChrisProjectPage;
-  if (typeof window !== 'undefined') {
-    const pageWrapper = document.getElementById('page-wrapper');
-    if (pageWrapper) {
-      const pageImages = pageWrapper.querySelectorAll('img');
-      if (pageImages.length > 0) {
-        const modal = pageWrapper.querySelector('.modal');
-        const modalImage = modal.querySelector('.image').querySelector('img');
-        // Each image gets an event listener
-        pageImages.forEach((image) => image.addEventListener('click', (e) => {
-          modal.classList.toggle('is-active');
-          modalImage.src = image.src;
-        }));
-        // Close button
-        const closeButton = modal.querySelector('.modal-close');
-        closeButton.addEventListener('click', (e) => {
-          modal.classList.toggle('is-active');
-        });
-      }
-    }
-  }
+
+  // Click handler for inline image zoom
+  //   if (typeof window !== 'undefined') {
+  //     const pageWrapper = document.getElementById('page-wrapper');
+  //     if (pageWrapper) {
+  //       const pageImages = pageWrapper.querySelectorAll('img');
+  //
+  //       if (pageImages.length > 0) {
+  //         const modal = pageWrapper.querySelector('.modal');
+  //         const modalImage = modal.querySelector('.image').querySelector('img');
+  //         const imageClickHandler = (image) => {
+  //           console.log('clicked');
+  //           modal.classList.toggle('is-active');
+  //           modalImage.src = image.src;
+  //         };
+  //         // Each image gets an event listener
+  //         pageImages.forEach((image) => image.addEventListener(
+  //           'click',
+  //           imageClickHandler(image),
+  //         ));
+  //         // Close button
+  //         const closeButton = modal.querySelector('.modal-close');
+  //         closeButton.addEventListener('click', (e) => {
+  //           modal.classList.toggle('is-active');
+  //         });
+  //       }
+  //     }
+  //   }
   return (
     <Layout seoInfo={{ title, description }}>
       <section id="page-wrapper" className="columns is-desktop">
@@ -89,7 +98,7 @@ function Project(props) {
               ))}
             </div>
           )}
-          <div
+          {/* <div
             id="there-has-to-be-a-better-way"
             className="box"
             style={{ visibility: 'hidden' }}
@@ -98,18 +107,18 @@ function Project(props) {
             <div className="content">
               <nav id="nav-side" className="table-of-contents" />
             </div>
-          </div>
+          </div> */}
         </div>
-        <div className="modal">
+        {/* <div className="modal">
           <div className="modal-background" />
           <div className="modal-content">
             <p className="image">
               <img src="https://bulma.io/images/placeholders/1280x960.png" alt="" />
             </p>
           </div>
-          <button className="modal-close is-large" aria-label="close" />
-        </div>
-        {/* <Warning v-if="project.fields.inProgress" /> */}
+          <button className="modal-close is-large" type="button" aria-label="close" />
+        </div> */}
+        {inProgress && <Warning />}
       </section>
     </Layout>
   );
@@ -137,6 +146,8 @@ export const query = graphql`
                 slug
                 title
             }
+            githubLink
+            inProgress
         }
     }
 `;

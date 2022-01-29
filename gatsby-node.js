@@ -9,6 +9,15 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   }`;
+  const techQuery = `{
+    allContentfulTech {
+      edges {
+        node {
+          slug
+        }
+      }
+    }
+  }`;
   // createPage({
   //   path: "/using-dsg",
   //   component: require.resolve("./src/templates/using-dsg.js"),
@@ -23,6 +32,21 @@ exports.createPages = async ({ graphql, actions }) => {
         createPage({
           path: `/projects/${node.slug}/`,
           component: require.resolve('./src/templates/Project.jsx'),
+          context: {
+            slug: node.slug,
+          },
+        });
+      });
+    }
+  });
+  await graphql(techQuery).then((result) => {
+    if (result.errors) {
+      console.error('techQuery error', result.errors);
+    } else {
+      result.data.allContentfulTech.edges.forEach(({ node }) => {
+        createPage({
+          path: `/tech/${node.slug}/`,
+          component: require.resolve('./src/templates/Tech.jsx'),
           context: {
             slug: node.slug,
           },

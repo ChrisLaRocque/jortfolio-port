@@ -1,6 +1,7 @@
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
+const path = require('path');
 
 module.exports = {
   siteMetadata: {
@@ -17,6 +18,13 @@ module.exports = {
       options: {
         name: 'images',
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-root-import',
+      options: {
+
+        utils: path.join(__dirname, 'src', 'components', 'pages'),
       },
     },
     'gatsby-transformer-sharp',

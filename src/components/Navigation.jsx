@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import Icon from './Icon';
 
-function Navigation(props) {
+function Navigation() {
   const mobileNavToggle = () => {
     if (typeof window !== 'undefined') {
       const toggle = document.getElementById('navbar-toggle');
@@ -24,19 +25,20 @@ function Navigation(props) {
         >
           Chris LaRocque
         </Link>
-        <a
+        <button
           id="navbar-toggle"
-          role="button"
+          type="button"
           className="navbar-burger"
           aria-label="menu"
           aria-expanded="false"
+          tabIndex={0}
           data-target="navbarBasicExample"
           onClick={mobileNavToggle}
         >
           <span aria-hidden="true" />
           <span aria-hidden="true" />
           <span aria-hidden="true" />
-        </a>
+        </button>
       </div>
 
       <div id="navbarBasicExample" className="navbar-menu">
@@ -76,7 +78,7 @@ function Navigation(props) {
           </div>
           <Link to="/me" className="navbar-item"> About + Contact </Link>
           <Link to="/search" className="navbar-item">
-            {/* <Icon name="Search" /> */}
+            <Icon name="Search" />
           </Link>
         </div>
       </div>
