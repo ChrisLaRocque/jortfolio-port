@@ -43,6 +43,15 @@ module.exports = {
     },
     `gatsby-transformer-remark`,
     `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: [
+          "G-YH5X1FXFKW", // Google Analytics / GA
+        ],
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
