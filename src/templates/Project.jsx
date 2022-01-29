@@ -1,27 +1,133 @@
 import React from 'react'
-import {graphql} from 'gatsby'
-
+import {graphql, Link} from 'gatsby'
+import Layout from '../components/Layout'
+import Icon from '../components/Icon'
 const Project = props =>{
     const {data} = props
     const {contentfulChrisProjectPage} = data
-    const {title, body} = contentfulChrisProjectPage
+    const {title, description, body, site, tech, githubLink, relatedProjects} = contentfulChrisProjectPage
+    if(typeof window !== 'undefined'){
+        const pageWrapper = document.getElementById("page-wrapper");
+      if (pageWrapper) {
+        const pageImages = pageWrapper.querySelectorAll("img");
+        if (pageImages.length > 0) {
+          const modal = pageWrapper.querySelector(".modal");
+          const modalImage = modal.querySelector(".image").querySelector("img");
+          // Each image gets an event listener
+          pageImages.forEach((image) =>
+            image.addEventListener("click", (e) => {
+              modal.classList.toggle("is-active");
+              modalImage.src = image.src;
+            })
+          );
+          // Close button
+          const closeButton = modal.querySelector(".modal-close");
+          closeButton.addEventListener("click", (e) => {
+            modal.classList.toggle("is-active");
+          });
+        }
+      }
+    }
     return(
-        <div>
-            <h1>{title}</h1>
-            {/* <small>{`${body.childMarkdownRemark.timeToRead} minutes`}</small> */}
-            <div dangerouslySetInnerHTML={{__html: body.childMarkdownRemark.html}} />
+        <Layout seoInfo={{title: title, description: description}}>
+            <section id="page-wrapper" className="columns is-desktop">
+    <div className="column is-two-thirds is-desktop">
+      <h1 className="is-size-3 is-size-4-touch is-capitalized has-text-weight-bold">
+        {title}
+      </h1>
+      {body && <div
+        className="content"
+        dangerouslySetInnerHTML={{__html: body.childMarkdownRemark.html}}
+      ></div>}
+    </div>
+    <div className="column">
+      <strong style={{display: 'block'}} className="has-text-grey-darker mt-4 mb-2">Related links</strong>
+      {site && <div className="box">
+        <small style={{display: "block"}}>Site</small>
+        <a href={site.link}>{site.text}</a>
+      </div>}
+      {tech && <div className="box">
+        <small style={{display: "block"}}>Tech used</small>
+        <div className="columns is-multiline is-mobile mt-2">
+          {tech.map(techItem => {
+              return (
+                  <Link
+            key={techItem.slug}
+            className="column is-one-fifth"
+            to={`/tech/${techItem.slug}`}
+            >
+                <Icon name={techItem.name} />
+                </Link>
+              )
+          })}
         </div>
+      </div>}
+      {githubLink && <div className="box">
+        <small style={{display: "block"}}>Github for project</small>
+        <a href={githubLink} style={{display: "block"}} className="mt-2">
+            <Icon name="Github" />
+        </a>
+      </div>}
+      {relatedProjects && <div className="box">
+        <small style={{display: "block"}}>Related projects</small>
+        {relatedProjects.map(relatedProject => {
+            return (
+                <Link
+
+          key={relatedProject.slug}
+          style={{display: "block"}}
+          to={`/projects/${relatedProject.slug}`}
+          >{ relatedProject.title }</Link>
+            )
+        })}
+      </div>}
+      <div
+        id="there-has-to-be-a-better-way"
+        className="box"
+        style={{visibility: "hidden"}}
+      >
+        <small style={{display: "block"}}>Table of contents</small>
+        <div className="content">
+          <nav id="nav-side" className="table-of-contents"></nav>
+        </div>
+      </div>
+    </div>
+    <div className="modal">
+      <div className="modal-background"></div>
+      <div className="modal-content">
+        <p className="image">
+          <img src="https://bulma.io/images/placeholders/1280x960.png" alt="" />
+        </p>
+      </div>
+      <button className="modal-close is-large" aria-label="close"></button>
+    </div>
+    {/* <Warning v-if="project.fields.inProgress" /> */}
+  </section>
+        </Layout>
     )
 }
 export const query = graphql`
     query projectQuery($slug: String!){
         contentfulChrisProjectPage(slug: {eq: $slug}){
             title
+            description
             body {
                 childMarkdownRemark {
                     html
                     timeToRead
                 }
+            }
+            site {
+                link
+                text
+            }
+            tech {
+                slug
+                name
+            }
+            relatedProjects {
+                slug
+                title
             }
         }
     }

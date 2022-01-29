@@ -1,0 +1,72 @@
+@import "~bulma/bulma.sass";
+
+* {
+  padding: 0;
+  margin: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+.modal-content {
+  width: calc(100vw - 20vw);
+  @media only screen and (max-width: 768px) {
+    width: calc(100vw - 10vw);
+  }
+}
+
+.navbar {
+  .navbar-brand {
+    .navbar-burger {
+      height: 5rem;
+      width: 5rem;
+      span {
+        width: 24px;
+        height: 3px;
+      }
+    }
+  }
+}
+
+section {
+  padding: 15px 30px;
+}
+.icon {
+  color: unset;
+  svg {
+    transform: scale(1.2);
+  }
+}
+
+#nav-side {
+  ol {
+    margin-top: 0;
+  }
+}
+@media only screen and (max-width: 768px) {
+  #page-wrapper {
+    &.columns {
+      margin-right: 0 !important;
+    }
+  }
+  .content {
+    table {
+      thead,
+      tbody {
+        display: block;
+        tr {
+          display: flex;
+          justify-content: space-between;
+          align-items: stretch;
+          td {
+            &:nth-of-type(2) {
+              text-align: right;
+              padding-right: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
