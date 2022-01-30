@@ -77,9 +77,9 @@ function Navigation() {
             </div>
           </div>
           <Link to="/me" className="navbar-item"> About + Contact </Link>
-          <Link to="/search" className="navbar-item">
+          {/* <Link to="/search" className="navbar-item">
             <Icon name="Search" />
-          </Link>
+          </Link> */}
         </div>
       </div>
     </nav>
