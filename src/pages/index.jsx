@@ -22,7 +22,7 @@ function IndexPage(props) {
         headline="Projects"
         subHeadline="The 3 most recent projects of mine."
         cards={projectCards}
-        more={{ to: '/projects', text: 'All projects'}}
+        more={{ to: '/projects', text: 'All projects' }}
         prepend="/projects/"
         ctaText="Building"
       />
@@ -42,6 +42,7 @@ export const query = graphql`
   query HomepageQuery{
     allContentfulChrisProjectPage(
       limit: 3
+      sort: {fields: updatedAt, order: DESC}
     ){
       edges {
         node {
@@ -53,6 +54,7 @@ export const query = graphql`
     }
     allContentfulTech(
       limit: 6
+      sort: {fields: updatedAt, order: DESC}
     ){
       edges {
         node {
