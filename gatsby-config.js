@@ -1,57 +1,57 @@
-require('dotenv').config({
+require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
-});
-const path = require('path');
+})
+const path = require("path")
 
 module.exports = {
   siteMetadata: {
-    title: 'Chris LaRocque',
-    description: 'Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.',
-    author: '@gatsbyjs',
-    siteUrl: 'https://gatsbystarterdefaultsource.gatsbyjs.io/',
+    title: "Chris LaRocque",
+    description:
+      "Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.",
+    author: "@gatsbyjs",
+    siteUrl: "https://gatsbystarterdefaultsource.gatsbyjs.io/",
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-image',
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-image",
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: 'images',
+        name: "images",
         path: `${__dirname}/src/images`,
       },
     },
     {
-      resolve: 'gatsby-plugin-root-import',
+      resolve: "gatsby-plugin-root-import",
       options: {
-
-        utils: path.join(__dirname, 'src', 'components', 'pages'),
+        utils: path.join(__dirname, "src", "components", "pages"),
       },
     },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
     {
-      resolve: 'gatsby-plugin-manifest',
+      resolve: "gatsby-plugin-manifest",
       options: {
-        name: 'gatsby-starter-default',
-        short_name: 'starter',
-        start_url: '/',
-        background_color: '#663399',
+        name: "gatsby-starter-default",
+        short_name: "starter",
+        start_url: "/",
+        background_color: "#663399",
         // This will impact how browsers show your PWA/website
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
-        display: 'minimal-ui',
-        icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
+        display: "minimal-ui",
+        icon: "src/images/gatsby-icon.png", // This path is relative to the root of the site.
       },
     },
     {
-      resolve: 'gatsby-source-contentful',
+      resolve: "gatsby-source-contentful",
       options: {
-        spaceId: 'i1trowbjm312',
+        spaceId: "i1trowbjm312",
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
-    'gatsby-transformer-remark',
-    'gatsby-plugin-sass',
+    "gatsby-transformer-remark",
+    "gatsby-plugin-sass",
     // {
     //   resolve: 'gatsby-plugin-google-gtag',
     //   options: {
@@ -65,4 +65,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-};
+}
