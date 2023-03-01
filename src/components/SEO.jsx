@@ -19,6 +19,7 @@ function SEO({
       }}
       title={title}
       meta={[
+      {name: 'robots', content: 'noindex, nofollow'}
         {
           name: 'description',
           content: description,
